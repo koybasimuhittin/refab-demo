@@ -36,7 +36,7 @@ const MintableCardContent = ({ image }: { image: Image }) => {
 
 	return (
 		<CardContent className="pt-6">
-			<div className="relative w-72 h-96 group overflow-hidden cursor-default">
+			<div className="relative w-72 h-72 group overflow-hidden cursor-default">
 				<Image
 					src={image.url}
 					alt="mock"

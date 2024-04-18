@@ -38,7 +38,7 @@ const MockImages = () => {
 	return (
 		<>
 			<div className="lg:grid hidden grid-cols-2 place-content-center justify-items-center gap-x-20 gap-y-10">
-				<ImageCard image={images[0]} isMintAvailable={true} />
+				<ImageCard image={images[0]} isMintAvailable={false} />
 				<ImageCard image={images[1]} isMintAvailable={false} />
 			</div>
 			<div className="grid lg:hidden grid-cols-1 place-content-center justify-items-center gap-x-20 gap-y-10">

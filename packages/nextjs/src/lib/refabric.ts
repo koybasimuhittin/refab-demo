@@ -11,7 +11,7 @@ export async function create(prompt: string) {
 		body: JSON.stringify({
 			prompt: prompt,
 			negative_prompt: "",
-			dimension: "512_768",
+			dimension: "512_512",
 		}),
 	})
 

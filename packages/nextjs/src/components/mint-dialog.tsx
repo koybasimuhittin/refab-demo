@@ -8,12 +8,16 @@ import {
 	DialogTitle,
 } from "@/components/ui/dialog"
 import NFTCard from "./nft-card"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "./ui/button"
 import LoadingSpinner from "./loading-spinner"
 import { useToast } from "./ui/use-toast"
 import { uploadMetadata } from "@/lib/pinata"
 import { CheckCircledIcon } from "@radix-ui/react-icons"
+import { useWriteContract } from "wagmi"
+import { useAccount } from "wagmi"
+import contracts from "../contracts/deployedContracts"
+import { parseEther } from "viem"
 
 type Metadata = {
 	name: string
@@ -37,6 +41,27 @@ export default function MintDialog({
 
 	const { toast } = useToast()
 
+	const { writeContract, isPending } = useWriteContract()
+	const account = useAccount()
+
+	useEffect(() => {
+		if (!isPending && loading) {
+			toast({
+				title: "NFT minted",
+				description: (
+					<div
+						className="flex gap-2npx shadcn-ui@latest add skeleton
+	"
+					>
+						<CheckCircledIcon /> Your NFT has been minted successfully!
+					</div>
+				),
+			})
+			setLoading(false)
+			setOpen(false)
+		}
+	}, [isPending])
+
 	const handleMintClick = () => {
 		if (name.length === 0) {
 			toast({
@@ -47,20 +72,13 @@ export default function MintDialog({
 		}
 		setLoading(true)
 		uploadMetadata({ ...metadata, name: name }).then((hash) => {
-			console.log("Metadata uploaded with hash", hash)
-			setLoading(false)
-			toast({
-				title: "NFT minted",
-				description: (
-					<div
-						className="flex gap-2npx shadcn-ui@latest add skeleton
-"
-					>
-						<CheckCircledIcon /> Your NFT has been minted successfully!
-					</div>
-				),
+			writeContract({
+				abi: contracts[11155111].LidyNFT.abi,
+				address: contracts[11155111].LidyNFT.address,
+				functionName: "publicMint",
+				args: [hash],
+				value: parseEther("0.03"),
 			})
-			setOpen(false)
 		})
 	}
 
