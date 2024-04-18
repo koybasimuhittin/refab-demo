@@ -132,7 +132,7 @@ export default function Page() {
 	}
 
 	return (
-		<div className="w-full flex flex-col items-center justify-center gap-2 h-full">
+		<div className="w-full flex flex-col items-center justify-center gap-2 pb-20">
 			<div className="w-fit p-20">
 				{images.items.length > 0 ? (
 					<Images images={images.items} isMintAvailable={true} />
