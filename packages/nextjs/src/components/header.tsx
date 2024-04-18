@@ -31,7 +31,7 @@ export const NavigationItems = [
 	{
 		title: "Create",
 		icon: null,
-		href: "/",
+		href: "/create",
 	},
 	{
 		title: "Explore",
@@ -42,10 +42,10 @@ export const NavigationItems = [
 
 export default function Header() {
 	return (
-		<div className="flex flex-row justify-center items-center border-b">
+		<div className="flex flex-row justify-center items-center border-b fixed w-full z-20 bg-black">
 			<div className="flex flex-row justify-between items-center max-w-7xl md:px-12 px-4 py-4 w-full">
-				<div className="flex flex-row gap-4 items-start justify-end">
-					<Logo className="w-36 h-6 top-1" />
+				<div className="flex flex-row md:gap-4 items-start justify-end">
+					<Logo className="w-36 h-6 top-1 md:block hidden" />
 					<NavigationMenu>
 						<NavigationMenuList>
 							{NavigationItems.map((item) => (

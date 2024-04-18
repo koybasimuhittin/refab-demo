@@ -10,6 +10,7 @@ import { WagmiProvider } from "wagmi"
 import { hardhat, sepolia } from "wagmi/chains"
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query"
 import Header from "./header"
+import { Toaster } from "@/components/ui/toaster"
 
 const config = getDefaultConfig({
 	appName: "My RainbowKit App",
@@ -33,9 +34,12 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
 						overlayBlur: "small",
 					})}
 				>
-					<Header />
-					<div className="flex items-center justify-center">
-						<div className="md:px-12 px-4  max-w-7xl">{children}</div>
+					<div className="min-h-screen relative">
+						<Header />
+						<div className="flex items-center justify-center h-full w-full absolute">
+							<div className="md:px-12 px-4 w-full h-full">{children}</div>
+						</div>
+						<Toaster />
 					</div>
 				</RainbowKitProvider>
 			</QueryClientProvider>
