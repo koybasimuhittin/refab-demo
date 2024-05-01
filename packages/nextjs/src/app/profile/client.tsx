@@ -21,8 +21,6 @@ export default function ProfileClient({
 		})
 		.filter((token) => token.owner === account.address)
 
-	const [tokens, setTokens] = useState<any>(filteredTokens.slice(0, 5))
-
 	if (!account.isConnected) {
 		return (
 			<div className="flex flex-col items-center justify-center h-full">
@@ -41,6 +39,23 @@ export default function ProfileClient({
 				<p className="text-lg text-center">
 					Please switch to the {chain.name.toLocaleUpperCase()} network
 				</p>
+			</div>
+		)
+	}
+
+	if (filteredTokens.length === 0) {
+		return (
+			<div className="flex flex-col items-center justify-center h-full">
+				<h1 className="text-2xl font-bold">No Tokens Found</h1>
+				<p className="text-lg text-center">
+					You don't have any refabric tokens yet
+				</p>
+				<a
+					href="/create"
+					className="text-lg text-center text-blue-500 underline"
+				>
+					Create Your Design
+				</a>
 			</div>
 		)
 	}
