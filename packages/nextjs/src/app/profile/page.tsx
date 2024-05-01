@@ -30,8 +30,6 @@ export default async function ProfilePage() {
 
 	const currentSupply = await contract.currentSupply()
 
-	console.log(currentSupply)
-
 	const requests = []
 	for (let i = 1; i <= currentSupply; i++) {
 		requests.push(
@@ -45,7 +43,6 @@ export default async function ProfilePage() {
 	}
 
 	const owners = await Promise.all(requests)
-	console.log(owners)
 
 	return <ProfileClient owners={owners} />
 }
