@@ -1,4 +1,5 @@
 const jwt = process.env.NEXT_PUBLIC_PINATA_JWT
+const gateway = process.env.NEXT_PUBLIC_PINATA_GATEWAY_URL
 
 export const uploadMetadata = async ({
 	image,
@@ -32,4 +33,13 @@ export const uploadMetadata = async ({
 	).json()
 
 	return res.IpfsHash
+}
+
+export const ipfsUrlToHash = (url: string): string => {
+	return url.split("/").pop() as string
+}
+
+export const fetchMetadata = async (ipfsHash: string) => {
+	const res = await fetch(`${gateway}${ipfsHash}`)
+	return res.json()
 }

@@ -1,3 +1,4 @@
+"use client"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
 import {
@@ -11,6 +12,7 @@ import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu"
 import Link from "next/link"
 
 import { ConnectButton } from "@rainbow-me/rainbowkit"
+import { useAccount } from "wagmi"
 
 export const Logo = ({ className }: { className?: string }) => {
 	return (
@@ -34,9 +36,9 @@ export const NavigationItems = [
 		href: "/create",
 	},
 	{
-		title: "Explore",
+		title: "Profile",
 		icon: null,
-		href: "/explore",
+		href: "/profile",
 	},
 ]
 
