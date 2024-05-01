@@ -48,7 +48,7 @@ export default function ProfileClient({
 			<div className="flex flex-col items-center justify-center h-full">
 				<h1 className="text-2xl font-bold">No Tokens Found</h1>
 				<p className="text-lg text-center">
-					You don't have any refabric tokens yet
+					You don&apos;t have any refabric tokens yet
 				</p>
 				<a
 					href="/create"
